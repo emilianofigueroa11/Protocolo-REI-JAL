@@ -1,0 +1,372 @@
+:root {
+  --primary: #166534;
+  --primary-dark: #052e16;
+  --primary-light: #f0fdf4;
+  --accent: #b45309;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --border: #cbd5e1;
+  --radius: 8px;
+}
+
+/* ==========================
+   RESET GENERAL
+========================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.page {
+  padding: 20px;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* ==========================
+   TARJETAS
+========================== */
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+}
+
+.content {
+  padding: 25px;
+  overflow-y: auto;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.header-branding {
+  background: var(--primary);
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.header-branding img {
+  height: 50px;
+  background: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+/* ==========================
+   FORMULARIO
+========================== */
+
+.section-header {
+  background: var(--primary-light);
+  padding: 8px 15px;
+  border-left: 4px solid var(--primary);
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 25px 0 15px;
+  text-transform: uppercase;
+  font-size: .9rem;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: .85rem;
+  color: #334155;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: .9rem;
+  transition: .2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+textarea {
+  min-height: 90px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+  opacity: .7;
+}
+
+/* ==========================
+   EQUATOR
+========================== */
+
+.equator-box {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* ==========================
+   ODS
+========================== */
+
+.ods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(130px,1fr));
+  gap: 8px;
+}
+
+.ods-item {
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: .65rem;
+  font-weight: 600;
+  transition: .2s;
+  background: white;
+}
+
+.ods-item.selected {
+  color: white;
+  border-color: transparent;
+}
+
+.ods-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+.actions {
+  padding: 15px 25px;
+  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-secondary {
+  background: #64748b;
+  color: white;
+}
+
+/* ==========================
+   PREVIEW
+========================== */
+
+.preview-pane {
+  background: #64748b;
+  padding: 30px;
+  overflow-y: auto;
+  height: 92vh;
+  border-radius: var(--radius);
+}
+
+.a4-doc {
+  background: white;
+  width: 100%;
+  min-height: 1120px;
+  padding: 60px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.3);
+  font-size: 10pt;
+  color: black;
+}
+
+.doc-header {
+  border-bottom: 2px solid black;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.doc-label {
+  font-weight: bold;
+  margin-top: 12px;
+  font-size: 9.5pt;
+}
+
+.doc-value {
+  margin-bottom: 8px;
+  padding-left: 10px;
+  border-left: 2px solid #eee;
+  text-align: justify;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.ods-preview-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  color: white;
+  border-radius: 4px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 8pt;
+}
+
+/* ==========================
+   TOAST
+========================== */
+
+#toastContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #334155;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.15);
+  font-size: .9rem;
+  font-weight: 600;
+  opacity: 0;
+  animation: slideIn .3s forwards,
+             fadeOut .3s forwards 3s;
+}
+
+.toast.success {
+  background: var(--primary);
+  border-left: 4px solid #14532d;
+}
+
+.toast.error {
+  background: #ef4444;
+  border-left: 4px solid #991b1b;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ==========================
+   LOADING
+========================== */
+
+#loadingOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1000;
+  font-weight: bold;
+}
+
+/* ==========================
+   CONTADORES
+========================== */
+
+.char-counter {
+  font-size: .75rem;
+  color: #64748b;
+  text-align: right;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.btn-document {
+  background: #0369a1;
+  color: white;
+}

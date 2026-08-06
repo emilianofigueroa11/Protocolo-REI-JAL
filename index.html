@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro Estatal de Protocolos - SSJ Jalisco</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="loadingOverlay">Procesando Documento...</div>
+<div id="toastContainer"></div>
+
+<div class="page">
+  <div class="container">
+    <section class="card">
+      <div class="header-branding">
+        <img id="ssjLogoUi"
+            src="img/logo.png"
+            alt="SSJ">
+        <div>
+          <h1 style="margin:0; font-size: 1rem;">Protocolo REI-JAL</h1>
+          <p style="margin:0; font-size: 0.7rem; opacity: 0.9;">Captura de Protocolos Oficiales SSJ</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="field">
+          <label>1. Título del Protocolo</label>
+          <textarea id="titulo" placeholder="Título completo..." maxlength="300"></textarea>
+          <div class="char-counter" id="cc-titulo">0 / 300</div>
+        </div>
+
+        <div class="field">
+          <label>2. Planteamiento del problema</label>
+          <textarea id="planteamiento" placeholder="Justificación y contexto..." maxlength="2000"></textarea>
+          <div class="char-counter" id="cc-planteamiento">0 / 2000</div>
+        </div>
+
+        <div class="field">
+          <label>3. Objetivo general</label>
+          <textarea id="objetivoGeneral" placeholder="¿Qué se pretende lograr?" maxlength="1000"></textarea>
+          <div class="char-counter" id="cc-objetivoGeneral">0 / 1000</div>
+        </div>
+
+        <div class="section-header">Metodología y Diseño (EQUATOR)</div>
+        
+        <div class="field">
+          <label>4. Diseño de Estudio</label>
+          <select id="disenoSelect">
+            <option value="">Seleccione el diseño...</option>
+            <option value="Cohorte, retrospectivo, analítico" data-guide="STROBE">Cohorte - [STROBE]</option>
+            <option value="Casos y Controles" data-guide="STROBE">Casos y Controles - [STROBE]</option>
+            <option value="Transversal analítico / descriptivo" data-guide="STROBE">Estudio Transversal - [STROBE]</option>
+            <option value="Ensayo Clínico Aleatorizado" data-guide="CONSORT">Ensayo Clínico Aleatorizado - [CONSORT]</option>
+            <option value="Revisión Sistemática / Meta-análisis" data-guide="PRISMA">Revisión Sistemática - [PRISMA]</option>
+            <option value="Estudio de Precisión Diagnóstica" data-guide="STARD">Pruebas Diagnósticas - [STARD]</option>
+            <option value="Serie de Casos / Reporte de Caso" data-guide="CARE">Reporte de Casos - [CARE]</option>
+            <option value="Diseños Cualitativos" data-guide="COREQ / SRQR">Diseños Cualitativos - [COREQ / SRQR]</option>
+            <option value="Métodos Mixtos" data-guide="GRAMMS">Métodos Mixtos - [GRAMMS]</option>
+          </select>
+          
+          <div id="equatorInfo" class="equator-box" style="display:none;">
+            <div id="guideLabel" style="font-weight: bold; color: #0369a1; font-size: 0.8rem;"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>5. Métodos</label>
+          <textarea id="metodos" placeholder="Muestreo, selección y análisis..." maxlength="3000"></textarea>
+          <div class="char-counter" id="cc-metodos">0 / 3000</div>
+        </div>
+
+        <div class="section-header">Administración</div>
+        
+        <div class="field">
+          <label>6. Institución a implementar</label>
+          <input type="text" id="institucion" placeholder="Nombre de la unidad médica">
+        </div>
+
+        <div class="field">
+          <label>7. Número de aprobación (Folio)</label>
+          <input type="text" id="folio" placeholder="Folio del comité">
+        </div>
+
+        <div class="field">
+          <label>8. Financiamiento</label>
+          <input type="text" id="financiamiento" placeholder="Fuente de recursos">
+        </div>
+
+        <div class="field">
+          <label>9. Conflicto de Interés</label>
+          <select id="conflictoStatus" style="margin-bottom: 10px;">
+            <option value="No existe conflicto de interés">No existe conflicto de interés</option>
+            <option value="Si existe conflicto">Sí existe conflicto de interés (especificar)</option>
+          </select>
+          <textarea id="conflictoDetalle" style="display: none;" placeholder="Describa el conflicto..."></textarea>
+        </div>
+
+        <div class="section-header">10. Objetivos de Desarrollo Sostenible (ODS)</div>
+        <div id="odsContainer" class="ods-grid"></div>
+      </div>
+
+        <div class="actions">
+        <button id="btnPdf" class="btn btn-primary">
+            📄 Generar protocolo PDF
+        </button>
+
+        <button id="btnRegistro" class="btn btn-document">
+        📤 Continuar registro documental
+        </button>
+
+        <button id="btnReset" class="btn btn-secondary">
+            🔄 Reiniciar
+        </button>
+        </div>
+    </section>
+
+    <section class="preview-pane">
+      <div class="a4-doc" id="docPreview">
+        <div class="doc-header">
+          <div style="font-weight: bold; color: var(--primary); font-size: 14pt;">Salud</div>
+          <div style="text-align: right;">
+            <img src="img/logo.png" style="height: 40px;" alt="SSJ Logo">
+          </div>
+        </div>
+
+        <div style="text-align: center; font-weight: bold; margin-bottom: 25px; text-decoration: underline;">
+          Registro Estatal de Protocolos del Estado de Jalisco
+        </div>
+
+        <div id="prevContent"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
