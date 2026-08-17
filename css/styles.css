@@ -370,3 +370,27 @@ textarea::placeholder {
   background: #0369a1;
   color: white;
 }
+
+@media (max-width: 768px) {
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-pane {
+        display: none;
+    }
+
+    .page {
+        padding: 10px;
+    }
+
+    .card {
+        max-height: none;
+    }
+
+    .content {
+        overflow-y: visible;
+    }
+
+}
