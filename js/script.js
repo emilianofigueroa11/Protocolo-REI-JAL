@@ -523,7 +523,7 @@ async function generateProtocolPDF() {
     });
 
     document.getElementById('loadingOverlay').style.display = 'none';
-    doc.save("Protocolo_Oficial_SSJ_Jalisco.pdf");
+    doc.save("Resumen_Inicial_SSJ_Jalisco.pdf");
     showToast("PDF generado correctamente", "success");
   });
 
