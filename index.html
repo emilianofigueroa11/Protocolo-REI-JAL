@@ -27,19 +27,19 @@
       <div class="content">
         <div class="field">
           <label>1. Título del Protocolo</label>
-          <textarea id="titulo" placeholder="Título completo..." maxlength="300"></textarea>
+          <textarea id="titulo" placeholder="Título completo..." maxlength="300" required></textarea>
           <div class="char-counter" id="cc-titulo">0 / 300</div>
         </div>
 
         <div class="field">
           <label>2. Planteamiento del problema</label>
-          <textarea id="planteamiento" placeholder="Justificación y contexto..." maxlength="2000"></textarea>
+          <textarea id="planteamiento" placeholder="Justificación y contexto..." maxlength="2000" required></textarea>
           <div class="char-counter" id="cc-planteamiento">0 / 2000</div>
         </div>
 
         <div class="field">
           <label>3. Objetivo general</label>
-          <textarea id="objetivoGeneral" placeholder="¿Qué se pretende lograr?" maxlength="1000"></textarea>
+          <textarea id="objetivoGeneral" placeholder="¿Qué se pretende lograr?" maxlength="1000" required></textarea>
           <div class="char-counter" id="cc-objetivoGeneral">0 / 1000</div>
         </div>
 
@@ -67,7 +67,7 @@
 
         <div class="field">
           <label>5. Métodos</label>
-          <textarea id="metodos" placeholder="Muestreo, selección y análisis..." maxlength="3000"></textarea>
+          <textarea id="metodos" placeholder="Muestreo, selección y análisis..." maxlength="3000" required></textarea>
           <div class="char-counter" id="cc-metodos">0 / 3000</div>
         </div>
 
@@ -75,22 +75,22 @@
         
         <div class="field">
           <label>6. Institución a implementar</label>
-          <input type="text" id="institucion" placeholder="Nombre de la unidad médica">
+          <input type="text" id="institucion" placeholder="Nombre de la unidad médica" required>
         </div>
 
         <div class="field">
           <label>7. Número de aprobación (Folio)</label>
-          <input type="text" id="folio" placeholder="Folio del comité">
+          <input type="text" id="folio" placeholder="Folio del comité" required>
         </div>
 
         <div class="field">
           <label>8. Financiamiento</label>
-          <input type="text" id="financiamiento" placeholder="Fuente de recursos">
+          <input type="text" id="financiamiento" placeholder="Fuente de recursos" required>
         </div>
 
         <div class="field">
           <label>9. Conflicto de Interés</label>
-          <select id="conflictoStatus" style="margin-bottom: 10px;">
+          <select id="conflictoStatus" required style="margin-bottom: 10px;">
             <option value="No existe conflicto de interés">No existe conflicto de interés</option>
             <option value="Si existe conflicto">Sí existe conflicto de interés (especificar)</option>
           </select>

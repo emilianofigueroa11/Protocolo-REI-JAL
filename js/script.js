@@ -431,19 +431,77 @@ async function generateProtocolPDF() {
   }
 
   document.getElementById('btnPdf').addEventListener('click', async () => {
-    const tituloEl = document.getElementById('titulo');
-    const disenoEl = document.getElementById('disenoSelect');
-    
-    if (!tituloEl.value.trim()) {
-      showToast("El Título del Protocolo es obligatorio", "error");
-      tituloEl.focus();
+
+  const camposObligatorios = [
+    {
+      id: 'titulo',
+      mensaje: 'El Título del Protocolo es obligatorio'
+    },
+    {
+      id: 'planteamiento',
+      mensaje: 'El Planteamiento del problema es obligatorio'
+    },
+    {
+      id: 'objetivoGeneral',
+      mensaje: 'El Objetivo general es obligatorio'
+    },
+    {
+      id: 'disenoSelect',
+      mensaje: 'Debe seleccionar un Diseño de Estudio'
+    },
+    {
+      id: 'metodos',
+      mensaje: 'Los Métodos son obligatorios'
+    },
+    {
+      id: 'institucion',
+      mensaje: 'La Institución a implementar es obligatoria'
+    },
+    {
+      id: 'folio',
+      mensaje: 'El Número de aprobación es obligatorio'
+    },
+    {
+      id: 'financiamiento',
+      mensaje: 'El Financiamiento es obligatorio'
+    }
+  ];
+
+  for (const campo of camposObligatorios) {
+
+    const elemento = document.getElementById(campo.id);
+
+    if (!elemento || !elemento.value.trim()) {
+
+      showToast(campo.mensaje, "error");
+
+      elemento.focus();
+
       return;
     }
-    if (!disenoEl.value) {
-      showToast("Debe seleccionar un Diseño de Estudio", "error");
-      disenoEl.focus();
-      return;
-    }
+  }
+
+  // Validar conflicto de interés
+  const conflictoStatus =
+    document.getElementById('conflictoStatus');
+
+  const conflictoDetalle =
+    document.getElementById('conflictoDetalle');
+
+  if (
+    conflictoStatus.value === 'Si existe conflicto' &&
+    !conflictoDetalle.value.trim()
+  ) {
+
+    showToast(
+      "Debe especificar el conflicto de interés",
+      "error"
+    );
+
+    conflictoDetalle.focus();
+
+    return;
+  }
 
     document.getElementById('loadingOverlay').style.display = 'flex';
     const doc = new jsPDF();
